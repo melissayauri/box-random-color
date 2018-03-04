@@ -1,0 +1,60 @@
+class Color extends React.Component {
+  render() {
+    let style = {
+      backgroundColor: this.props.colorCircle
+    };
+    return (
+    <div className="color" onLoad={this.props.update.bind(this, this.props.index)} style={style}>
+
+      </div>
+    );
+  }
+}
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      colorsNum: 5,
+      colors: []
+    };
+    for (let i = 0; i < this.state.colorsNum; i += 1) {
+      this.state.colors.push({ colorCircle: this.generateColor() });
+    }
+  }
+
+  generateColor() {
+    return (
+      "#" +
+      Math.random()
+        .toString(5)
+        .substr(-3)
+    );
+  }
+
+  updateColor(index) {
+    let colors=this.state.colors.slice();
+    const currentColor = this.generateColor();
+    colors[index].colorCircle = currentColor;
+    this.setState({
+      colors: colors
+    });
+  }
+
+  render() {
+    return (
+      <div className="color-container">
+        {this.state.colors.map((color, index) => (
+          <Color
+            key={`color-${index}`}
+            index={index}
+            update={this.updateColor.bind(this)}
+            colorCircle={color.colorCircle}
+          />
+        ))}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
