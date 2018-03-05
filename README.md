@@ -7,6 +7,7 @@ Crear a través de la librería React una plataforma que muestre varios círculo
  * React
  * ES6
  * Babel
+ * Codepen
 
 ## Flujo
 1. Se crea cinco círculos que contendran diversos colores.
@@ -49,3 +50,6 @@ Crear a través de la librería React una plataforma que muestre varios círculo
 3. Tercer Resultado
 
    ![Encabezado](assets/img/layaout2.PNG)
+
+## Otros
+* [Codepen](https://codepen.io/melissayauri/pen/rJbRyg)
