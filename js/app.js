@@ -8,8 +8,7 @@ class Color extends React.Component {
     };
     return (
       /* retorna el evento onlodad para cambiar los colores*/
-    <div className="color" onLoad={this} style={backgroundCircle}>
-
+      <div className="color" onLoad={this.props} style={backgroundCircle}>
       </div>
     );
   }
@@ -23,13 +22,12 @@ class App extends React.Component {
       /* número de colores asigandos a los circulos*/
       number: 5,
       /* array de los colores*/
-      colors: []
-
+      arrayColors: []
     };
     /* recorrido para cada item*/
     for (let i = 0; i < this.state.number; i += 1) {
       /* agregando al array par asignarle el color*/
-      this.state.colors.push({ colorCircle: this.generateColor() });
+      this.state.arrayColors.push({ colorCircle: this.generateColor() });
     }
   }
   /* generando el color en hexadecimal para cada circulo*/
@@ -44,24 +42,21 @@ class App extends React.Component {
         .toString(16)
       /* recortando el numero random desde el final solo 6 digitos*/
         .slice(-6)
-
-    );
+      );
+    }
+    render() {
+      return (
+        /* contenedor de los círculos*/
+        <div className="container">
+        /* se realiza un recorrido por el array de colores*/
+        {this.state.arrayColors.map((color) => (
+          /* Se incorpora cada circulo con el color respectivo*/
+          <Color colorCircle={color.colorCircle}
+          />)
+        )}
+        </div>
+      );
+    }
   }
-
-
-
-  render() {
-    return (
-      /* actualizando*/
-      <div className="color-container">
-        {this.state.colors.map((color) => (
-          <Color
-            colorCircle={color.colorCircle}
-          />
-        ))}
-      </div>
-    );
-  }
-}
-/* usando el componente para que funcione*/
-ReactDOM.render(<App />, document.getElementById("box"));
+  /* usando el componente para que funcione*/
+  ReactDOM.render(<App />, document.getElementById("box"));

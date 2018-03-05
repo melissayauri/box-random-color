@@ -28,7 +28,7 @@ var Color = function (_React$Component) {
       };
       return (
         /* retorna el evento onlodad para cambiar los colores*/
-        React.createElement("div", { className: "color", onLoad: this, style: backgroundCircle })
+        React.createElement("div", { className: "color", onLoad: this.props, style: backgroundCircle })
       );
     }
   }]);
@@ -51,13 +51,13 @@ var App = function (_React$Component2) {
       /* número de colores asigandos a los circulos*/
       number: 5,
       /* array de los colores*/
-      colors: []
+      arrayColors: []
 
     };
     /* recorrido para cada item*/
     for (var i = 0; i < _this2.state.number; i += 1) {
       /* agregando al array par asignarle el color*/
-      _this2.state.colors.push({ colorCircle: _this2.generateColor() });
+      _this2.state.arrayColors.push({ colorCircle: _this2.generateColor() });
     }
     return _this2;
   }
@@ -81,14 +81,16 @@ var App = function (_React$Component2) {
     key: "render",
     value: function render() {
       return (
-        /* actualizando*/
+        /* contenedor de los círculos*/
         React.createElement(
           "div",
-          { className: "color-container" },
-          this.state.colors.map(function (color) {
-            return React.createElement(Color, {
-              colorCircle: color.colorCircle
-            });
+          { className: "container" },
+          this.state.arrayColors.map(function (color) {
+            return (
+              /* Se incorpora cada circulo con el color respectivo*/
+              React.createElement(Color, { colorCircle: color.colorCircle
+              })
+            );
           })
         )
       );
